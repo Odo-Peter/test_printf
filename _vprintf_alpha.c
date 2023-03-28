@@ -15,11 +15,7 @@ int _vprintf_alpha(const char *format, va_list args)
             {
                 state = 1;
             }
-            else
-            {
-                _putchar(*format);
-            }
-        }
+                }
         else if (state == 1)
         {
             switch (*format)

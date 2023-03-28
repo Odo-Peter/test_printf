@@ -9,7 +9,7 @@ int _vprintf_decimal(const char *format, va_list args)
     /*state 0 is the regular state*/
     /*state 1 is the % or specifier state*/
     int state = 0, n;
-    char *buff;
+    char buff[32];
     while (*format)
     {
         if (state == 0)
@@ -30,17 +30,14 @@ int _vprintf_decimal(const char *format, va_list args)
             {
             case 'd':
             {
+                int i;
                 n = va_arg(args, int);
-                printf("N: %d\n", n);
-                buff = (char *)malloc(sizeof(char) * 32);
+
                 num_to_string(n, 10, buff);
-
-                while (*buff)
+                for (i = 0; buff[i]; i++)
                 {
-                    _putchar(*buff);
-                    buff++;
+                    _putchar(buff[i]);
                 }
-
                 break;
             }
             }
@@ -48,6 +45,5 @@ int _vprintf_decimal(const char *format, va_list args)
         }
         format++;
     }
-    free(buff);
     return 0;
 }
